@@ -2,6 +2,19 @@
 $data = new CurrencyController;
 $currencies = $data->getAllCurrencies();
 ?>
+
+<script>
+    var Currency = [
+
+        <?php foreach ($currencies as $currency) : ?>
+            change<?php echo $currency->id ?> = {
+                id: '<?php echo $currency->id ?>',
+                exchangerate: '<?php echo $currency->exchangerate ?>'
+            },
+        <?php endforeach; ?>
+    ];
+</script>
+
 <div class="container">
     <div class="row my-4">
         <div class="col-md-8 mx-auto">
@@ -17,15 +30,15 @@ $currencies = $data->getAllCurrencies();
                         <label for="">From</label>
                         <select class="form-select" aria-label="Default select example" id="From">
                             <?php foreach ($currencies as $currency) : ?>
-                                <option value="<?php echo $currency->id ?>"><?php echo $currency->to_currency ?></option>
+                                <option value="<?php echo $currency->id ?>"><?php echo $currency->currency ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="">To</label>
                         <select class="form-select" aria-label="Default select example" id="To">
-                            <?php foreach ($currencies as $currency) : ?>
-                                <option value="<?php echo $currency->id ?>"><?php echo $currency->to_currency ?></option>
+                            <?php foreach (array_reverse($currencies)  as $currency) : ?>
+                                <option value="<?php echo $currency->id ?>"><?php echo $currency->currency ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

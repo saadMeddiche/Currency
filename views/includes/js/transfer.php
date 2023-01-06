@@ -1,28 +1,4 @@
-<?php
-$data = new CurrencyController;
-$currencies = $data->getAllCurrencies();
-?>
 <script>
-    var Currency = [
-
-        <?php foreach ($currencies as $currency) : ?>
-            change<?php echo $currency->id ?> = {
-                id: '<?php echo $currency->id ?>',
-                from: '<?php echo $currency->from_currency ?>',
-                to: '<?php echo $currency->to_currency ?>',
-                exchangerate: '<?php echo $currency->exchangerate ?>'
-            },
-        <?php endforeach; ?>
-
-
-
-
-    ];
-
-
-
-
-
     function transfer() {
 
         var From = document.getElementById("From").value;
